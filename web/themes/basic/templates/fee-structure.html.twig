@@ -1,0 +1,60 @@
+<!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark text-center bg-fixed text-light" style="background-image: url(../themes/basic/images/fee_structure.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Fee structure</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Pricing Area
+    ============================================= -->
+    <div id="pricing" class="pricing-area default-padding bg-gray bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="pricing pricing-simple text-center">
+
+                {% for key, level in items %}
+
+
+                    <div class="col-md-2 equal-height"> 
+                        <div class="pricing-item">
+                            <ul>
+                                <li class="fee-image"><img src="{{level.fee_image}}" /></li>
+                                <li class="pricing-header">
+                                   
+                                    <h4>{{level.title}}</h4>
+                                </li>
+                                <!--<li><strong>Duration: &nbsp;</strong>20 - 30 Minutes</li>-->
+                                <li>${{level.min_fee}}  -  ${{level.max_fee}}</li>
+                                {% if logged_in %}
+                                    <li class="footer">
+                                    <a class="btn circle btn-dark border btn-sm smooth-menu" href="/level/{{level.id}}">Book Session</a>
+                                </li>
+                                {% else %}
+                                <li class="footer">
+                                    <a class="btn circle btn-dark border btn-sm smooth-menu" href="/contact-us">Contact Us</a>
+                                </li>
+                                {% endif  %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                   
+               
+                    <div class="col-md-12 info">
+                    <h4>Each Session Consist of 2 hrs.</h4>
+                    <p class="contact_msg">
+                        (kindly contact us @+65 8405 4831 for any special requests)
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Pricing Area -->

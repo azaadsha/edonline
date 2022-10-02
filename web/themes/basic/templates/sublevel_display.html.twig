@@ -1,0 +1,165 @@
+
+<!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area shadow dark text-center bg-fixed text-light" style="background-image: url({{items['banner_image_path']}});">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{items['level_title']}}</h1>
+                    <h4>{{items['level_desc']}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Advisor Details 
+    ============================================= -->
+    <div class="adviros-details-area default-padding sublevel-display">
+        <div class="container">
+            <div class="row">
+                <div class="site-heading text-center">
+                    <div class="col-md-8 col-md-offset-2">
+                     
+                        <h2>Let's Begin Our Journey</h2>
+                        <!-- <p>
+                            Discourse assurance estimable applauded to so. Him everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression. 
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-5 thumb">
+                    <img src="{{items['left_bar_image_path']}}" alt="Thumb">
+                    <div class="desc">
+                        <h4>{{items['level_title']}}</h4>
+                        
+                    </div>
+                </div>
+                <div class="col-md-7 info">
+                    <!-- Star Tab Info -->
+                    <div class="tab-info">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-pills">
+                        {% set count = 1 %}
+                        {% for sub_level in items['sub_levels'] %} 
+
+                        {% if count == 1 %}
+                            {% set class="active" %}
+                         {% else %}
+                            {% set class="" %}
+                        {% endif %}
+
+                            <li class="{{class}}" id="{{sub_level['id']}}">
+                                <a data-toggle="tab" href="#tab{{count}}" aria-expanded="true">
+                                    {{sub_level['title']}}
+                                </a>
+                            </li>
+                          {% set count = count+1 %}  
+                          {% endfor %}
+                            
+                        </ul>
+                        <!-- End Tab Nav -->
+                        <!-- Start Tab Content -->
+                        <div class="tab-content tab-content-info">
+
+                             {% set count = 1 %}
+                             {% for sub_level in items['sub_levels'] %} 
+
+                        {% if count == 1 %}
+                            {% set class="active" %}
+                         {% else %}
+                            {% set class="" %}
+                        {% endif %}
+
+                            <!-- Single Tab -->
+                            
+                            <div id="tab{{count}}" class="tab-pane fade {{class}} in">
+                           
+                            <form name="subjects_form" method="post" action="/slot-booking">
+							{% if count == 1 %}
+                            <input type="hidden" name="sub-level" id="sub-level" value="{{sub_level['id']}}" />
+                            
+							 {% endif %}
+							 <input type="hidden" name="level-selected" value="{{items['level_id']}}" />
+                                <div class="info title">
+                                    <h3>{{sub_level['title']}}</h3>
+                                    <p>
+                                       {{sub_level['body'][0]['value'] | raw}}
+                                    </p>
+                                   
+                                </div>
+                                
+                                
+                            </div>
+                            {% set count = count+1 %}
+                   
+                            {% endfor %}
+                            <!-- End Single Tab -->
+                        </div>
+                        <!-- End Tab Content -->
+                    </div>
+                    <!-- End Tab Info -->
+
+                    <div>
+                     {% if items['subjects'] %}
+
+                                <div class="row" id="subjects-row">
+                                    <div class="col-lg-12">
+                                  
+                                        <ul>
+
+                                       
+                                        
+                                        <li class="ml-0" style="font-size: 18px;">
+                                         {% for key, subject in items['subjects'] %}
+                                        <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="selected-subject" value="{{key}}">{{subject}}
+                                        </label>
+                                        </div>
+                                        {% endfor %}
+                                                                                
+                                        </li>
+                                        
+                                    </ul>
+                                   </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-lg-12" id="language-div" style="display:none;">
+                                    <div class="col-lg-6">
+                                    <input type="text" name="language" id="language-text" class="form-text " placeholder="Enter Your language*"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" id="subject-div" style="display:none;">
+                                    <div class="col-lg-6">
+                                    <input type="text" placeholder="Subject details*" name="others" id="others-text" class="form-text"/>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <button class="button-sm button-theme" type="submit" id="subject-pass">
+                                            Session Selection
+                                        </button>
+                                    </div>
+                                </div>
+
+                    
+                    </div>
+                     {% else %}
+                  <div class="messages messages--error">No subjects added under this level. Please check later.</div>
+               {% endif %} 
+                    <div class="col-lg-12"><div class="subject-validation messages messages--error hidden" style="display:none;"></div></div>
+                    </form>
+                    
+                </div>
+            </div>
+
+            
+
+
+        </div>
+    </div>
+    <!-- End Advisor Details -->

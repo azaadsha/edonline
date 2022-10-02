@@ -1,0 +1,13 @@
+services:
+  commerce_payment_extra.manager:
+    class: Drupal\commerce_payment_extra\PaymentManager
+    arguments: ['@entity_type.manager', '@logger.channel.commerce_payment_extra', '@event_dispatcher']
+  commerce_payment_extra.filter_payments_subscriber:
+    class: Drupal\commerce_payment_extra\EventSubscriber\FilterPaymentsSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber, priority: -200 }
+  logger.channel.commerce_payment_extra:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['commerce_payment_extra']

@@ -1,0 +1,4 @@
+administer edlite configuration:
+  title: 'Administer edlite configuration'
+  description: 'Optional description.'
+  restrict access: true

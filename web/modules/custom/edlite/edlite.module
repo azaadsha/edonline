@@ -1,0 +1,647 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for edlite module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Routing;
+use Drupal\node\Entity\Node;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\UserInterface;
+use Drupal\Core\Messenger;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
+
+
+/**
+ * Implements hook_form_alter().
+ * Adding redirect paths for site admin when performing actions on various entity types
+ * @todo need to refactor the code
+ */
+function edlite_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  unset($form['meta']);
+  $destination_url = '';
+
+  switch ($form_id) {
+
+    case 'node_university_form':
+    case 'node_university_delete_form':
+      $destination_url = "/universities";
+    break;
+
+    case 'node_school_form':
+    case 'node_school_delete_form':
+      $destination_url = "/schools";
+    break;
+
+    case 'node_polytechnic_form':
+    case 'node_polytechnic_delete_form':
+      $destination_url = "/polytechnics";
+    break;
+
+    case 'node_levels_form':
+    case 'node_levels_delete_form':
+      $destination_url = "/levels";
+    break;
+
+    case 'node_sub_levels_form':
+    case 'node_sub_levels_delete_form':
+      $destination_url = "/sub-levels";
+    break;
+
+    case 'taxonomy_term_subjects_form':
+      $destination_url = "/subjects";
+    break;
+
+    case 'node_qualified_teachers_form':
+      $destination_url = "/qualified-teachers";
+    break;
+
+    case 'user_login_form':
+      $new_validation = 'edlite_form_user_login_form_validate';
+      array_splice($form['#validate'], 3, 0, $new_validation);
+    break;    
+  }
+  if (!empty($destination_url)) {
+
+    $form['destination_link'] = array(
+    '#type' => 'value',
+    '#value' => $destination_url
+    );
+    $form['actions']['submit']['#submit'][] = '_edlite_redirect_submit_handler';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_validate().
+ * To change the validation message when user enters invalid credentials
+ * 
+ */
+function edlite_form_user_login_form_validate(array &$form, FormStateInterface $form_state) {
+  $errors = $form_state->getErrors();
+  if (!empty($errors['name'])) {
+    $string_error = $errors['name']->__tostring();
+    if (strpos($string_error, 'Unrecognized username or password') !== FALSE) {
+      $user_input = $form_state->getUserInput();
+      $query = isset($user_input['name']) ? ['name' => $user_input['name']] : [];
+      $form_state->clearErrors();
+      $form_state->setErrorByName('name', t('The username or password is not recognised or incorrect. Kindly check. <a href=":password"> Forgot your password?</a>', [':password' => Url::fromRoute('user.pass', [], ['query' => $query])->toString()]));
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter
+ * Update the message shows on one time password link page
+ */ 
+
+function edlite_user_pass_reset_alter(&$form, FormStateInterface $form_state){
+	
+	
+  $form['message'] = ['#markup' => t('<p>This link is valid for one time only.Kindly click on the Log In button below to change your password.
+  </p>')];
+		
+}
+/**
+ * Custom form submit handler for handling redirects whenever a entity action performed
+ */
+function _edlite_redirect_submit_handler($form, FormStateInterface $form_state) {
+ 
+  $dest_url = $form_state->getValue('destination_link');
+  $url = Url::fromUri('internal:' . $dest_url);
+  $form_state->setRedirectUrl($url);
+  
+}
+
+/**
+ * Implements hook_form_alter
+ * Adding a custom submit method to user password form
+ */ 
+function edlite_form_user_pass_alter(&$form, FormStateInterface $form_state) {
+	
+	$form['#submit'][] = '_edlite_pass_reset_redirect';
+	
+}
+/**
+ * Custom form submit handler for handling redirect
+ */
+function _edlite_pass_reset_redirect(&$form, FormStateInterface $form_state) {
+	
+		$form_state->setRedirect('user.pass');
+  
+}
+/**
+ * Implements hook_form_alter
+ * Adding a custom theme  to user profile form
+ */ 
+function edlite_form_user_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+   $form['#theme'] = 'user_profile_form';
+ }
+
+ /**
+ * Implements hook_form_FORM_ID_alter
+ * Adding password reset link to user login form
+ */ 
+function edlite_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+   // No need to show the description
+  unset($form['name']['#description']);
+  unset($form['pass']['#description']);
+  
+  // Add reset password link.
+    $url_object = Url::fromRoute('user.pass');
+    $form['password_reset_link'] = [
+      '#type' => 'link',
+      '#url' => $url_object,
+      '#title' => t('Forgot your password ?'),
+      '#attributes' => [
+        'class' => ['user-reset-password-link'],
+      ],
+    ];
+ 
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ * All customization for user registration form
+ */ 
+function edlite_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  
+  //Remove auto population of form data
+  $form['#attributes']['data-user-info-from-browser'] = FALSE;
+
+  //Order the schools list on registration page as set by the site admin using draggable views
+  $database = \Drupal::database();
+  $query = $database->select('draggableviews_structure', 'd')
+  ->condition('d.view_name', 'schools', '=')
+  ->fields('d', ['entity_id', 'weight'])
+  ->orderBy('weight', 'ASC');
+  $result = $query->execute();
+
+  $schoolOptions = [];
+  $schoolOptions['_none'] = '- None -';
+
+  foreach ($result as $record) {
+    if(isset($form['field_school']['widget']['#options'][$record->entity_id])){
+      $schoolOptions[$record->entity_id] = $form['field_school']['widget']['#options'][$record->entity_id]; 
+    }
+  } 
+
+
+  $diff  = array_diff($form['field_school']['widget']['#options'], $schoolOptions);
+  $schoolOptions[key($diff)] = $diff[key($diff)];
+  $form['field_school']['widget']['#options']  = $schoolOptions;
+
+  //Order the Universities list on registration page as set by the site admin using draggable views
+  $query = $database->select('draggableviews_structure', 'd')
+    ->condition('d.view_name', 'universities', '=')
+    ->fields('d', ['entity_id', 'weight'])
+    ->orderBy('weight', 'ASC');
+    $result = $query->execute();
+
+  $universityOptions = [];
+  $universityOptions['_none'] = '- None -';
+
+  foreach ($result as $record) {
+    $universityOptions[$record->entity_id] = $form['field_university']['widget']['#options'][$record->entity_id]; 
+  }
+
+  $diff  = array_diff($form['field_university']['widget']['#options'], $universityOptions);
+  if(!empty($diff)){
+    $universityOptions[key($diff)] = $diff[key($diff)];
+  }
+  $form['field_university']['widget']['#options']  = $universityOptions;
+
+  //Order the Polytechnics list on registration page as set by the site admin using draggable views
+
+  $query = $database->select('draggableviews_structure', 'd')
+    ->condition('d.view_name', 'polytechnics', '=')
+    ->fields('d', ['entity_id', 'weight'])
+    ->orderBy('weight', 'ASC');
+    $result = $query->execute();
+
+  $polytechnicOptions = [];
+  $polytechnicOptions['_none'] = '- None -';
+
+  foreach ($result as $record) {
+    if(isset( $form['field_polytechnic']['widget']['#options'][$record->entity_id])){
+    $polytechnicOptions[$record->entity_id] = $form['field_polytechnic']['widget']['#options'][$record->entity_id]; 
+    }
+  }
+
+  $diff  = array_diff($form['field_polytechnic']['widget']['#options'], $polytechnicOptions);
+  if(!empty($diff)){
+    $polytechnicOptions[key($diff)] = $diff[key($diff)];
+  }
+  $form['field_polytechnic']['widget']['#options']  = $polytechnicOptions;
+  $form['#attributes']['class'][] = 'white-popup-block';
+  $form['field_level']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_level']['widget']['#options']['_none'] = 'Select Level';
+  $form['field_school']['widget']['#options']['_none'] = 'Select School';
+  $form['field_university']['widget']['#options']['_none'] = 'Select University';
+  $form['field_polytechnic']['widget']['#options']['_none'] = 'Select Polytechnic';
+  $form['field_school']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_polytechnic']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_university']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['account']['mail']['#description'] = null;
+  $form['account']['name']['#description'] = null;
+  $form['account']['pass']['#description'] = null;
+  $form['actions']['submit']['#value'] = 'Sign Up';
+  $form['#theme'] = 'edlite__user_register_form';
+
+  //Change the page title based on role ID passed
+  $user_role = \Drupal::routeMatch()->getRawParameter('rid');
+  $title = ($user_role == 'teacher') ? 'TEACHER REGISTRATION' : 'STUDENT REGISTRATION';
+  $form['page_title'] = [
+    '#type' => 'markup',
+    '#markup' => $title
+
+  ];
+ 
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Remove Overview and Delete buttons from subjects 
+ */
+function edlite_form_taxonomy_term_subjects_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  
+  unset($form['actions']['overview']);
+  unset($form['actions']['delete']);
+  
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Show hide session form fields based on user role
+ * @todo refactor the code 
+ */
+function edlite_form_node_sessions_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  $roles = \Drupal::currentUser()->getRoles();
+  $form['field_session_sub_level']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_session_subject']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_session_level']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_session_end_time']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_session_time']['widget']['#attributes']['class'][] = 'nice-select';
+  $form['field_session_teacher']['widget']['#attributes']['class'][] = 'nice-select';
+  
+  if (!in_array('administrator', $roles)){
+    $form['field_session_date_time']['#access'] = false;
+    $form['field_price_committed']['#access'] = false;
+    $form['field_fee_paid']['#access'] = false;
+    $form['field_session_end_time']['#access'] = false;
+    $form['field_session_language']['#access'] = false;
+    $form['field_session_other_subject']['#access'] = false;
+    $form['field_session_teacher']['#access'] = false;
+    $form['field_student_s_feedback']['#access'] = false;
+    $form['field_teacher_s_feedback']['#access'] = false;
+    $form['field_session_requested_by']['#access'] = false;
+    
+  }
+
+  if (in_array('site_admin', $roles)){
+
+    $form['field_session_end_time']['#access'] = true;
+    $form['field_student_s_feedback']['#access'] = true;
+    $form['field_teacher_s_feedback']['#access'] = true;
+    $form['field_session_teacher']['#access'] = true;
+    $form['#theme'] = 'edlite_siteadmin_session_edit_form';
+    
+  }
+
+  if (in_array('student', $roles)) {
+
+    $session_date_time = $form['field_session_date_time']['widget'][0]['value']['#default_value']->__toString();
+    $session_date_time_to_timestamp =  strtotime($form['field_session_date_time']['widget'][0]['value']['#default_value']->__toString());
+    $current_timestamp = time();
+    $time_togo = $session_date_time_to_timestamp - $current_timestamp;
+    
+    if ($time_togo < 21600) {
+      
+      $redirect =  new RedirectResponse('/session-edit-not-allowed');
+      $redirect->send();
+    }
+    
+    $form['field_session_level']['#disabled'] = TRUE;
+    $form['field_session_sub_level']['#disabled'] = TRUE;
+    $form['title']['#disabled'] = TRUE;
+  }
+
+  
+  $form['field_session_level']['widget']['#ajax'] = [
+      'callback' => 'callback_populate_sublevels_subjects',
+      'event' => 'change',
+      'progress' => [
+        'type' => 'throbber',
+        'message' => t('Please wait...'),
+      ]
+  ];
+      
+  //Added these two hidden variables to capture the am pm of the selected times
+  $form['session_start_time'] = [
+    "#type" => "hidden",
+    "#default_value" => '',
+  ];
+  $form['session_end_time'] = [
+    "#type" => "hidden",
+    "#default_value" => '',
+  ];
+  $form['session_start_date'] = [
+    "#type" => "hidden",
+    "#default_value" => '',
+  ];
+
+  array_unshift($form['actions']['submit']['#submit'], '_edlite_node_sessions_edit_form_submit');
+  $form['actions']['submit']['#submit'][] = '_edlite_node_sessions_edit_form_save_date_and_time';
+   
+}
+
+/**
+ * Ajax call back for population the sublevels and subjects based on level selected
+ */
+function callback_populate_sublevels_subjects($form, FormStateInterface $form_state) {
+
+  $selected_level_arr = $form_state->getValue('field_session_level');
+  $selected_level = $selected_level_arr[0]['target_id'];
+  if (!empty($selected_level)) {
+    $options = get_sublevel_options($selected_level);
+    $form['field_session_sub_level']['widget']['#options'] = $options['sublevels'];
+    $form['field_session_subject']['widget']['#options'] = $options['subjects'];
+    $response = new \Drupal\Core\Ajax\AjaxResponse();
+    $response->addCommand(new \Drupal\Core\Ajax\ReplaceCommand(".field--name-field-session-sub-level",  $form['field_session_sub_level']));
+    $response->addCommand(new \Drupal\Core\Ajax\ReplaceCommand(".field--name-field-session-subject", $form['field_session_subject']));
+    return $response;
+    
+  }
+  return $form;
+  //return  $form['field_session_sub_level'];
+  
+
+}
+
+/**
+ *Get subjects and sublevels based on level 
+ * @param int $level
+ * @return associative array $options contains  subjects and sublevels
+ */
+function get_sublevel_options($level){
+
+  $level_data = Node::load($level);
+  $subject_entities = $level_data->get('field_subjects')->referencedEntities();
+  $sublevel_entities = $level_data->get('field_sublevels')->referencedEntities(); 
+  $subjects = [];
+  foreach ($subject_entities as  $entity) {
+     $subjects[$entity->id()] = $entity->label();
+  }
+
+  $sublevels = [];
+  foreach ($sublevel_entities as  $entity) {
+    $sublevels[$entity->id()] = $entity->label();
+  }
+  $options['subjects'] = $subjects;
+  $options['sublevels'] = $sublevels;
+  return $options;
+
+}
+/**
+ * Custom function to save date and time when a session node is edited 
+*/
+function _edlite_node_sessions_edit_form_save_date_and_time($form, FormStateInterface $form_state){
+
+  $values = $form_state->getValues();
+  $session_date =  $values['field_session_date'][0]['value']->format("Y-m-d");
+  
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $session_data = Node::load($node->id());
+
+  if (!empty($values['session_start_time'])) {
+    
+    $session_start_time = str_replace(" ", "", strtolower($values['session_start_time']));
+    $session_data->field_session_date_time = strtotime($session_date . $session_start_time);
+    $session_data->save();
+  }
+
+}
+/**
+ * Custom function to send email whenever a session is edited and try to save specific fields
+ * @todo need to make the mail template configurable  and code refactorization
+*/
+
+function _edlite_node_sessions_edit_form_submit($form, FormStateInterface $form_state) {
+
+   $values = $form_state->getValues();
+   $node = \Drupal::routeMatch()->getParameter('node');
+   $session_data = Node::load($node->id());
+
+  //Send email notifications to admin if the student updates a session
+  $roles = \Drupal::currentUser()->getRoles();
+  if (in_array('student', $roles)){
+    $base_path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+    $main_message = '';
+    $message = '<p>Dear Admin,</p><p>The below session data has been updated by the student.</p>';
+    $message.= '<p style="font-weight:700;">Student Details:</p>';
+    $message.='Email : '. \Drupal::currentUser()->getEmail().'<br>';
+    $message.='User Name : '. \Drupal::currentUser()->getDisplayName().'<br>';
+    $message.='Profile Link: <a href="'.$base_path.'user/'.\Drupal::currentUser()->id().'" >'.$base_path.'/user/'.\Drupal::currentUser()->id().'</a><p>&nbsp;</p>';
+    $message.= '<p>Session Details:</strong><p>';
+    $message.='Title : '. $session_data->getTitle().'<br>';
+    $message.='Session Link : <a href="'.$base_path.'node/'.$node->id().'/edit?destination=/session-list ">'.$base_path.'/node/'.$node->id().'/edit?destination=/session-list</a>'.'<br>';
+    $actual_date = $session_data->get('field_session_date')->value;
+    $actual_time = $session_data->get('field_session_time')->value;
+    $actual_subject = $session_data->get('field_session_subject')->target_id;
+    $actual_assistance = $session_data->get('field_assistance_requested')->value;
+    $updated_date = date('Y-m-d',strtotime($values['field_session_date'][0]['value']));
+    $updated_time = $values['field_session_time'][0]['value'];
+    $updated_subject = $values['field_session_subject'][0]['target_id'];
+    $updated_assistance = $values['field_assistance_requested'][0]['value'];
+
+    if($actual_date !== $updated_date){
+      $main_message.='Actual Date : '.$actual_date.'&nbsp;<------->&nbsp; Updated Date :'.$updated_date.'<br>';
+
+    }
+    if($actual_time !== $updated_time){
+      $am_pm ='';
+      $updated_time_arr = explode(':',$updated_time);
+      $actual_time_arr = explode(':',$actual_time);
+      if(($updated_time_arr[0] < 12) && ($updated_time_arr[0] > 8)){
+        $am_pm = 'AM';
+      }
+      else{
+        $am_pm = 'PM';
+      }
+      if(($actual_time_arr[0] < 12) && ($actual_time_arr[0] > 8)){
+        $act_am_pm = 'AM';
+      }
+      else{
+        $act_am_pm = 'PM';
+      }
+      $main_message.='Actual Time : '.$actual_time.'&nbsp;'.$act_am_pm.'<------->&nbsp;Updated Time :'.$updated_time.'&nbsp;'.$am_pm.'<br>';
+    }
+    if($actual_subject !== $updated_subject){
+      $new_subject = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($updated_subject);
+      $old_subject = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($actual_subject);
+      $main_message.='Actual Subject : '.$old_subject->getName().'&nbsp;<------->&nbsp; Updated Subject :'.$new_subject->getName().'<br>';
+    }
+    if($actual_assistance !== $updated_assistance) {
+      $main_message.='Actual Topics : '.$actual_assistance.'<br>Updated Topics : '.$updated_assistance.'<br>';
+    }
+    if($main_message) {
+      $message.=$main_message;
+      send_session_edit_delete_mail($message,'session_edit');
+    }
+
+  }
+
+}
+
+/**
+ * Implements hook_theme()
+ * 
+ */
+function edlite_theme($existing, $type, $theme, $path) {
+
+  return [
+
+    'edlite__user_register_form' => [
+      'render element' => 'form'
+    ],
+
+    'sublevel_display' => [
+      'template' => 'sublevel_display',
+      'render element' => 'elements',
+      'variables' => ['items' => []]
+    ],
+
+    'sublevel_module_display' => [
+      'template' => 'sublevel_module_display',
+      'render element' => 'elements',
+      'variables' => ['items' => []]
+    ],
+
+    'slot_booking' => [
+      'template' => 'slot_booking',
+      'render element' => 'elements',
+      'variables' => ['items' => []],
+    ],
+
+    'edlite_siteadmin_session_edit_form' => [
+      'template' => 'siteadmin_session_edit_form',
+      'render element' => 'form',
+    ],
+
+    'edlite_student_session_edit_form' => [
+      'template' => 'student_session_edit_form',
+      'render element' => 'form',
+    ],
+    
+    'student_profile' => [
+      'template' => 'student_profile',
+      'variables' => ['items' => []]
+    ],
+
+    'teacher_profile' => [
+      'template' => 'teacher_profile',
+      'variables' => ['items' => []]
+    ],
+
+    'fee_structure' => [
+      'template' => 'fee-structure',
+      'variables' => ['items' => []]
+    ],
+
+    'user_profile_form' => [
+      'template' => 'user_profile_edit',
+      'render element' => 'form',
+    ],
+
+    'contact_edlite' => [
+      'template' => 'contact_edlite',
+      'variables' => ['items' => []]
+    ],
+
+    'contact_edlite_special_kids' => [
+      'template' => 'contact_edlite_special_kids',
+      'variables' => ['items' => []]
+    ],
+
+    'feedback_form' =>[
+      'template' => 'feedback_form',
+      'render element' => 'form',
+    ]
+
+  ];
+}
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+*/
+function edlite_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+   
+    if(isset($form['actions']['delete'])){
+      unset($form['actions']['delete']);
+    }
+    
+  }
+
+
+/**
+ * Implements hook_mail().
+ * @todo need some of the items configurable
+ */
+function edlite_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  $message['from'] = \Drupal::config('system.site')->get('mail');
+  $message['body'][] = $params['message'];
+  
+  switch ($key) {
+    case 'session_edit':
+      $message['subject'] = t('EdLite Session Edit Notification: @title', array('@title' => $params['title']), $options);
+      //$message['body'][] = Html::escape($params['message']);
+	  break;
+
+    case 'session_delete':
+      $message['subject'] = t('EdLite Session Delete Notification: @title', array('@title' => $params['title']), $options);
+      //$message['body'][] = Html::escape($params['message']);
+    break;
+
+  }
+}
+
+/**
+ * Custom function to send an email to administrator account
+ */
+function send_session_edit_delete_mail($message,$key) {
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'Edlite';
+  //$to = \Drupal::currentUser()->getEmail();
+  $to  = \Drupal::config('system.site')->get('mail');
+  $params['message'] = $message;
+  $params['title'] = '';
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = true;
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if ($result['result'] != true) {
+    $message = t('There was a problem sending your email notification to @email.', array('@email' => $to));
+    //drupal_set_message($message, 'error');
+    \Drupal::logger('mail-log')->error($message);
+    return;
+  }
+
+  //$message = t('An email notification has been sent to @email ', array('@email' => $to));
+  //drupal_set_message($message);
+  //\Drupal::logger('mail-log')->notice($message);
+}

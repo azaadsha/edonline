@@ -1,0 +1,80 @@
+<!-- Start Advisor Details 
+         ============================================= -->
+      <div class="adviros-details-area default-padding page-height">
+         <div class="container">
+            <div class="row">
+               <div class="site-heading text-center">
+                  <div class="col-md-8 col-md-offset-2">
+                     <h2>Select Your Session</h2>
+                     <!-- <p>
+                        Discourse assurance estimable applauded to so. Him everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression. 
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+
+
+<div><button class="add">Add</button></div>
+
+           <div class="element"> 
+            <div class="row" style="border:1px solid #CCC;" id="row-1">
+               <div class="col-md-4 thumb">
+                  <div class="desc">
+                     <h4>Select Your Date</h4>
+                     <input type="text" name="slot_date-1" class="form-control datepicker">
+                  </div>
+               </div>
+               <div class="col-md-8 info calender-wrap">
+                  <!-- Star Tab Info -->
+   
+    <fieldset id="field-set-1">
+    
+    <label for="radio-1">09:00 AM</label>
+    <input type="radio" name="radio-1"  class="timeslot" id="radio-1" value="9:00">
+     <label for="radio-2">09:30 AM</label>
+    <input type="radio" name="radio-1"  class="timeslot" id="radio-2" value="9:30">
+    <label for="radio-3">10:00 AM</label>
+    <input type="radio" name="radio-1" class="timeslot" id="radio-3" value="10:00">
+     <label for="radio-4">10:30 AM</label>
+    <input type="radio" name="radio-1"  class="timeslot" id="radio-4" value="10:30">
+    <label for="radio-5">11:00 AM</label>
+    <input type="radio" name="radio-1"  class="timeslot" id="radio-5" value="11:00">
+     <label for="radio-6">11:30 AM</label>
+   <input type="radio" name="radio-1" id="radio-6" class="timeslot" value="11:30">
+    <label for="radio-7">12:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-7" class="timeslot" value="12:00">
+     <label for="radio-8">12:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-8" class="timeslot" value="12:30">
+    <label for="radio-9">01:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-9" class="timeslot" value="1:00">
+     <label for="radio-10">01:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-10" class="timeslot" value="1:30">
+    <label for="radio-11">02:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-11" class="timeslot" value="2:00">
+     <label for="radio-12">02:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-12" class="timeslot" value="2:30">
+    <label for="radio-13">03:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-13" class="timeslot" value="3:00">
+     <label for="radio-14">03:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-14" class="timeslot" value="3:30">
+    <label for="radio-15">04:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-15" class="timeslot" value="4:00">
+     <label for="radio-16">04:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-16" class="timeslot" value="4:30">
+    <label for="radio-17">05:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-17" class="timeslot" value="5:00">
+     <label for="radio-18">05:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-18" class="timeslot" value="5:30">
+    <label for="radio-19">06:00 PM</label>
+    <input type="radio" name="radio-1" id="radio-19" class="timeslot" value="6:00">
+     <label for="radio-20">06:30 PM</label>
+    <input type="radio" name="radio-1" id="radio-20" class="timeslot" value="6:30">
+    
+   
+  </fieldset>
+       </div>
+            </div> <!-- end Row-->
+            </div><!-- end element -->
+         </div>
+      </div>
+      <!-- End Advisor Details -->

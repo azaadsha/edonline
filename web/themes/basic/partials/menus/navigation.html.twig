@@ -1,0 +1,184 @@
+{% set markets = [
+  {'link': '/markets/biofuels',
+  'term': 'Biofuels'},
+  {'link': '/markets/crack-spread',
+  'term': 'Crack Spread'},
+  {'link': '/markets/crude-oil',
+  'term': 'Crude Oil'},
+  {'link': '/markets/frac-spread',
+  'term': 'Frac Spread'},
+  {'link': '/markets/liquefied-natural-gas-lng',
+  'term': 'Liquefied Natural Gas'},
+  {'link': '/markets/natural-gas',
+  'term': 'Natural Gas'},
+  {'link': '/markets/natural-gas-liquids-ngl',
+  'term': 'Natural Gas Liquids'},
+  {'link': '/markets/petrochemicals',
+  'term': 'Petrochemicals'}
+] %}
+
+{% set business = [
+  {'link': '/business/company-profiles',
+  'term': 'Company Profiles'},
+  {'link': '/business/earnings',
+  'term': 'Earnings'},
+  {'link': '/business/investment',
+  'term': 'Investment'},
+  {'link': '/business/master-limited-partnerships',
+  'term': 'Master Limited Partnerships'},
+  {'link': '/business/people',
+  'term': 'People'},
+  {'link': '/business/private-equity',
+  'term': 'Private Equity'},
+  {'link': '/business/public-capital',
+  'term': 'Public Capital'},
+  {'link': '/business/restructurings',
+  'term': 'Restructurings'}
+] %}
+
+{% set technology = [
+  {'link': '/technology/artificial-lift',
+  'term': 'Artificial Lift'},
+  {'link': '/technology/completions',
+  'term': 'Completions'},
+  {'link': '/technology/drilling',
+  'term': 'Drilling'},
+  {'link': '/technology/digital-oilfield',
+  'term': 'Digital Oilfield'},
+  {'link': '/technology/enhanced-oil-recovery',
+  'term': 'Enhanced Oil Recovery'},
+  {'link': '/technology/logistics',
+  'term': 'Logistics'},
+  {'link': '/technology/pressure-pumping',
+  'term': 'Pressure Pumping'},
+  {'link': '/technology/subsea/risers',
+  'term': 'Risers'},
+  {'link': '/technology/seismic',
+  'term': 'Seismic'},
+  {'link': '/technology/subsea',
+  'term': 'Subsea'},
+  {'link': '/technology/water-management',
+  'term': 'Water Management'},
+  {'link': '/technology/well-stimulation',
+  'term': 'Well Stimulation'}
+] %}
+
+{% set ep = [
+  {'link': '/exploration-production/unconventional',
+  'term': 'Unconventional'},
+  {'link': '/exploration-production/conventional',
+  'term': 'Conventional'},
+  {'link': '/exploration-production/deepwater',
+  'term': 'Deepwater'},
+  {'link': '/exploration-production/shelf',
+  'term': 'Shelf'},
+  {'link': '/exploration-production/highlights',
+  'term': 'Highlights'},
+  {'link': '/exploration-production/rig-counts',
+  'term': 'Rig Counts'},
+  {'link': '/exploration-production/top-initial-production-ip-wells',
+  'term': 'Top IP Wells'},
+  {'link': '/exploration-production/discoveries',
+  'term': 'Discoveries'},
+  {'link': '/exploration-production/emerging-plays',
+  'term': 'Emerging Plays'},
+  {'link': '/exploration-production/field-development',
+  'term': 'Field Development'},
+  {'link': '/exploration-production/heavy-oil',
+  'term': 'Heavy Oil'},
+  {'link': '/exploration-production/reservoir-evaluation',
+  'term': 'Reservoir Evaluation'}
+] %}
+
+{% set transactions = [
+  {'link': '/transactions/acquisitions-divestitures',
+  'term': 'Acquisitions & Divestitures'},
+  {'link': '/transactions/joint-ventures',
+  'term': 'Joint Ventures'},
+  {'link': '/transactions/lease-sales',
+  'term': 'Lease Sales'},
+  {'link': '/transactions/mergers',
+  'term': 'Mergers'},
+  {'link': '/transactions/trends',
+  'term': 'Trends'}
+] %}
+
+{% set policy = [
+  {'link': '/policy-regulations/emissions',
+  'term': 'Emissions'},
+  {'link': '/policy-regulations/health-safety-environment',
+  'term': 'Health, Safety, & Environment'},
+  {'link': '/policy-regulations/infrastructure',
+  'term': 'Infrastructure'},
+  {'link': '/policy-regulations/international',
+  'term': 'International'},
+  {'link': '/policy-regulations/legislation',
+  'term': 'Legislation'},
+  {'link': '/policy-regulations/methane',
+  'term': 'Methane'},
+  {'link': '/policy-regulations/trade',
+  'term': 'Trade'}
+] %}
+
+{% set midstream = [
+  {'link': '/midstream/construction',
+  'term': 'Construction'},
+  {'link': '/midstream/gathering-processing',
+  'term': 'Gathering & Processing'},
+  {'link': '/midstream/pipelines',
+  'term': 'Pipelines'},
+  {'link': '/midstream/rail',
+  'term': 'Rail'},
+  {'link': '/midstream/storage',
+  'term': 'Storage'},
+  {'link': '/midstream/tankers',
+  'term': 'Tankers'},
+  {'link': '/midstream/trucks',
+  'term': 'Trucks'}
+] %}
+
+{% set energytran = [
+
+] %}
+
+{% set shale = [
+  {'link': '/shale-plays/appalachia',
+  'term': 'Appalachia'},
+  {'link': '/shale-plays/australia',
+  'term': 'Australia'},
+  {'link': '/shale-plays/williston/bakken',
+  'term': 'Bakken'},
+  {'link': '/shale-plays/barnett',
+  'term': 'Barnett'},
+  {'link': '/shale-plays/canada',
+  'term': 'Canada'},
+  {'link': '/shale-plays/midcontinent',
+  'term': 'Midcontinent'},
+  {'link': '/shale-plays/permian',
+  'term': 'Permian'},
+  {'link': '/shale-plays/new-albany',
+  'term': 'New Albany'},
+  {'link': '/shale-plays/poland',
+  'term': 'Poland'},
+  {'link': '/shale-plays/rockies',
+  'term': 'Rockies'},
+  {'link': '/shale-plays/texas-la-gulf-coast',
+  'term': 'Texas/LA Gulf Coast'},
+  {'link': '/shale-plays/williston',
+  'term': 'Williston'}
+] %}
+
+{% set menu = {
+  'Markets': markets,
+  'Business': business,
+  'Technology': technology,
+  'Exploration & Production': ep,
+  'Transactions': transactions,
+  'Policy & Regulation': policy,
+  'Midstream': midstream,
+  'Shale Plays': shale,
+  'Energy Transition': energytran
+} %}
+
+{% include directory ~ '/partials/menus/mobile_menu.html.twig' with menu %}
+{% include directory ~ '/partials/menus/desktop_menu.html.twig' with menu %}

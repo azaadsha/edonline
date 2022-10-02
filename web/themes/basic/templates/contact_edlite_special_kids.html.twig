@@ -1,0 +1,59 @@
+
+<!-- Start Registration 
+   ============================================= -->
+<div id="contact-form" class="reg-area default-padding-top">
+   <div class="container">
+      <div class="row">
+         <div class="reg-items">
+            <div class="col-md-6 reg-form default-padding-bottom">
+               <div class="site-heading text-left">
+                  <h2>We offer services to cater to needs of Special Kids. Kindly reach out to us by providing your contact details below.</h2>
+                  <!-- <p>
+                     written on charmed justice is amiable farther besides. Law insensible middletons unsatiable for apartments boy delightful unreserved. 
+                     </p> -->
+               </div>
+               <form method="post" >
+               
+                {{ items.form_build_id }}
+                {{ items.form_token }}
+                {{ items.form_id }}
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           {{items.field_special_kids_first_name}}
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           {{items.field_special_kids_last_name}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.field_special_kids_email}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.field_special_kids_phone}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.message}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        {{items.actions}}
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="col-md-6 thumb">
+               <img src="../themes/basic/images/contact.png" alt="Thumb">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Registration -->

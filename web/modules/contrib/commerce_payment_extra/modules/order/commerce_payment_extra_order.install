@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Set default values for new config.
+ *
+ * Formerly when this module was enabled capture and cancel was performed
+ * automatically. Two config options - capture_payments_on_order_transition and
+ * cancel_payments_on_order_transition were introduced to make this
+ * configurable.
+ */
+function commerce_payment_extra_order_update_8001(&$sandbox) {
+  $config = \Drupal::configFactory()->getEditable('commerce_payment_extra_order.settings');
+  $config->set('capture_payments_on_order_transition', TRUE);
+  $config->set('cancel_payments_on_order_transition', TRUE);
+  $config->save();
+}

@@ -1,0 +1,56 @@
+<!-- Start Header Top 
+    ============================================= -->
+    <div class="top-bar-area address-two-lines bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 address-info">
+                    <div class="info box">
+                        <ul>
+                            <li>
+                                <span><i class="fas fa-map"></i> Address</span>21 Bukit Batok Crescent, SG – 658065
+                            </li>
+                            <li>
+                                <span><i class="fas fa-envelope-open"></i> Email</span>info@edliteinspirations.com
+                            </li>
+                            <li>
+                                <span><span class="whatsapp-icon"></span> Contact</span>+65 8405 4831
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% if logged_in %}
+                <div class="user-login text-right col-md-4">
+                <div class=" user-log">
+                     <a  class=" dropdown-toggle" data-toggle="dropdown">
+                     <i class="fas fa-user"></i> {{ user.displayname }}
+                     </a>
+                     
+                     {% set roles = user.getroles(TRUE) %}
+                     {% set dashboard_link = '' %}
+                        {% if roles[0] != NULL %}
+                            {#{% set dashboard_link = '/' ~ roles[0] ~ '/dashboard' %}#}
+                            {#{% set dashboard_link = '/user/' ~ user.id  %}#}
+                         {% endif %}   
+                     <ul class="dropdown-menu">
+                        <li><a href="/user"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        
+                        <li><a href="/user/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                     </ul>
+                  </div>
+                  </div>
+
+                {% else %}
+                <div class="user-login text-right col-md-4">
+                    <a  href="/register/student">
+                        <i class="fas fa-edit"></i> Register
+                    </a>
+                    <a   href="/user/login">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top -->

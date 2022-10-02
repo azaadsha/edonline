@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - commerce_payment_extra_order
+id: commerce_payment_extra_order
+label: 'Process payment on order transition'
+backend: database
+backend_configuration:
+  lease_time: 300
+processor: daemon
+processing_time: 0
+locked: false

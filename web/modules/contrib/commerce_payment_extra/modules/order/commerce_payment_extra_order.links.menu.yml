@@ -1,0 +1,5 @@
+commerce_payment_extra_order.settings:
+  title: 'Commerce Payment Extra Order'
+  description: 'Auto-place authorized orders; connect payment status with order status'
+  route_name: commerce_payment_extra_order.settings
+  parent: commerce_payment.configuration

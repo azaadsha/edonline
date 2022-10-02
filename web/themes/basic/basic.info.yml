@@ -1,0 +1,26 @@
+name: Basic
+type: theme
+description: 'HTML5, SASS, Responsive grid starter theme.'
+package: Core
+base theme: bartik
+core_version_requirement: ^8.8 || ^9
+
+libraries:
+  - basic/global
+  - basic/owl-carousel
+
+regions:
+  page_ribbon: 'Page Ribbon'
+  primary_menu: 'Primary Menu'
+  left_nav: 'Left Navigation'
+  page_title: 'Page Title'
+  content_top: 'Content Top'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  content_bottom: 'Content Bottom'
+  footer_copyright: 'Footer Copyright'
+
+# Information added by Drupal.org packaging script on 2021-02-10
+version: '8.x-2.1'
+project: 'basic'
+datestamp: 1612916296

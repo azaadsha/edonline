@@ -1,0 +1,15 @@
+name: Commerce Payment Extra
+type: module
+description: Synchronizes Payment status on Order transition.
+package: Commerce
+core_version_requirement: ^8.7.7 || ^9
+dependencies:
+  - commerce_payment_extra:commerce_payment_extra
+  - commerce:commerce_payment
+  - commerce:commerce_order
+  - advancedqueue:advancedqueue
+
+# Information added by Drupal.org packaging script on 2021-06-16
+version: '8.x-1.0-rc2'
+project: 'commerce_payment_extra'
+datestamp: 1623843550

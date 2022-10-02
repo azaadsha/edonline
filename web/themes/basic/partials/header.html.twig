@@ -1,0 +1,157 @@
+<!-- Header 
+    ============================================= -->
+    <header id="home">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default attr-border navbar-sticky bootsnav">
+
+            <!-- Start Top Search -->
+            <div class="container">
+                <div class="row">
+                    <div class="top-search">
+                        <div class="input-group">
+                            <form action="#">
+                                <input type="text" name="text" class="form-control" placeholder="Search">
+                                <button type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Top Search -->
+
+            <div class="container">
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <!-- <li class="search"><a href="#"><i class="fa fa-search"></i></a></li> -->
+                        <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
+                    </ul>
+                </div>        
+                <!-- End Atribute Navigation -->
+
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <img src="/{{ directory }}/images/logo.png" class="logo" alt="Logo" style="max-width:190px;">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        
+                        <li class="dropdown">
+
+                         {% if is_front == 1 %}
+                            <a class="smooth-menu" href="#about-content">About Us</a>
+                         {% else %}
+                         <a class="smooth-menu" href="/about-us">About Us</a>  
+                       
+                        {% endif %}
+                            
+                        </li>
+                        <li class="dropdown">
+                            <a href="/level/37">SAT/ACTs</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/level/38">Poly/Engg</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/online-courses">Online Courses</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/fee-structure"> Fee Structure</a>
+                        </li>
+                        <li>
+                       
+                        {% if is_front == 1 %}
+                            <a class="smooth-menu" href="#contact-form">Contact Us</a>
+                         {% else %}
+                         <a class="smooth-menu" href="/contact-us">Contact Us</a>   
+                       
+                        {% endif %}
+                            
+                        </li>
+                         <li class="dropdown">
+                            <a href="/special-kids-contact-us"> Special Kids</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                <div class="widget">
+                    <h4 class="title">Menu</h4>
+                    <!-- <div class="profile-thumb">
+                        <img src="assets/img/800x800.png" alt="Profile">
+                    </div> -->
+                    <ul>
+                        <li><a href="/level/37">SAT/ACTs</a></li>
+                        <li><a href="/level/38">Poly/Engg</a></li>
+                        <li><a href="/online-courses">Online Courses</a></li>
+                        <li><a href="/fee-structure">Fee Structure</a></li>
+                        {% if logged_in %}
+                        <li><a class="right_userlogin" href="/user/logout">
+                        <i class="fas fa-user"></i> Logout
+                    </a></li>
+                    {% else %}
+                    <li><a class="right_userlogin" href="/user/login">
+                        <i class="fas fa-user"></i> Login
+                    </a></li>
+                    {% endif %}
+                    </ul>
+
+                </div>
+                <div class="widget">
+                    <h4 class="title">Additional Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li>
+                        {% if is_front == 1 %}
+                            <a class="smooth-menu" href="#about-content">About Us</a>
+                         {% else %}
+                         <a class="smooth-menu" href="/about-us">About Us</a>  
+                       
+                        {% endif %}
+                        </li>
+                        {% if is_front == 1 %}
+                        <li><a href="#contact-form">Contact Us</a></li>
+                        {% else %}
+                        <li><a href="/contact-us">Contact Us</a></li>
+                        {% endif %}
+
+
+                        <li><a href="/register/teacher">Join Us</a></li>
+
+                        
+                    </ul>
+                </div>
+                <div class="widget social">
+                    <h4 class="title">Connect With Us</h4>
+                    <ul class="link">
+                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="pinterest"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li class="linkedin"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Side Menu -->
+
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+    <!-- End Header -->

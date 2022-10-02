@@ -1,0 +1,692 @@
+<!-- Start Banner 
+   ============================================= -->
+<div class="row main-slider-main">
+    <div class="main-slider-wrap">
+        
+       <div class="container">
+               <div class="row">
+                  <div class="col-md-9" style="margin:0 auto;float:none;">
+                     <div class="">
+                        <h1>Plan your Educational Journey with <span style="color:#ffb606 ">EdLite</span> <span>Inspirations</span></h1>
+                        <form action="#" class="row">
+                           <!-- <input type="text" placeholder="Enter course name" class="form-control" name="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button type="submit">
+                                  Search Courses
+                              </button>  -->
+                              <div class="col-lg-2"></div>
+                           <div class="col-lg-5">
+                              <select name="level" id="level_selection" class="nice-select">
+                                            <option value="0" selected>Choose Your Level</option>
+                                           {{drupal_view('levels_unformatted','levels_block')}}
+                                        </select>
+                           </div>
+                           <div class="col-lg-3">
+                              <button type="submit" style="left:0">
+                              Continue
+                              </button>
+                           </div>
+                           <!-- <br>
+                              <button type="submit">
+                                  Search Courses
+                              </button> -->
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+    
+    </div>
+         <div class="col-md-12">
+            <div class="popular-courses-items main-courses-carousel owl-carousel owl-theme">
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/banner1.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: Free</div> -->
+                  </div>
+                  
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/banner2.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/home_bnner2.jpg" alt="Thumb">
+                     </a>
+                  </div>
+                  
+               </div>
+               <!-- End Single Item -->
+               
+            </div>
+         </div>
+      </div>
+      <!------------->
+<!-- end Banner 
+   ============================================= -->
+
+
+<!-- Start Fun Factor 
+   ============================================= -->
+<div class="text-center shadow bg-dark text-light" style="padding:50px 0">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 item">
+            <div class="fun-fact">
+               <!-- <div class="icon">
+                  <i class="flaticon-contract"></i>
+                  </div> -->
+               <div class="info">
+                  <!-- <span class="timer" data-to="212" data-speed="5000"></span> -->
+                  <h2>" Education is not the learning of facts, but the training of mind to think "</h2>
+                  <span class="medium" style="color:#ffb606;text-align: right;
+                            margin-right: 20px;">- Albert Einstein</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Fun Factor -->
+<!-- Start Why Chose Us 
+   ============================================= -->
+<div id="about-content" class="wcs-area default-padding bg-light content-default">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12 col-xs-12">
+            <div class="site-heading text-center">
+               <h2 style="margin-bottom:10px;padding-bottom:10px;">We are EdLite Inspirations</h2>
+               <p style="margin:0 auto 50px auto;max-width:60%;">
+                  A ONE2ONE Learning Institute for ALL Levels and Subjects.
+                  An environment that appreciates every student’s questioning
+                  ability by training of the mind to think than learning of facts.
+               </p>
+            </div>
+         </div>
+         <div class="col-md-6 thumb">
+            <div class="site-heading text-left">
+               <p>
+                  EdLite Inspirations is a dependable center to seek joy in learning. Our are genuinely passionate in spreading knowledge to our students. Each session is catered to the students’ needs and learning speed, thus every lesson is unique on its own to suit the students’ style and capacity. EdLite’s care for each and every one of our students can be seen not only in the teaching approach, but also content and materials used in learning. 
+               </p>
+            </div>
+            <img src="../themes/basic/images/thumb1.png" alt="Thumb">
+         </div>
+         <div class="col-md-6 content">
+            <!-- item -->
+            <div class="item">
+               <div class="icon">
+                  <i class="flaticon-trending"></i>
+               </div>
+               <div class="info">
+                  <p>
+                     The content is curated according to individuals’ capabilities and shortcomings, and this method allows each student to grow on their own and reach their personal goals, making learning more effective and fun. EdLite is a great choice for students’ development in their passion for learning.
+                  </p>
+               </div>
+            </div>
+            <!-- item -->
+            <!-- item -->
+            <div class="item">
+               <div class="icon">
+                  <i class="flaticon-professor"></i>
+               </div>
+               <div class="info">
+                  <!-- <h4>
+                     <a href="#">Certified Teachers</a>
+                     </h4> -->
+                  <p>
+                     Our EdLite teachers, are well experienced MOE Registered teachers with interactive blend in skills and will make sure every student has a comfortable learning experience.
+                  </p>
+               </div>
+            </div>
+            <!-- item -->
+            <!-- item -->
+            <div class="item">
+               <div class="icon">
+                  <i class="flaticon-books"></i>
+               </div>
+               <div class="info">
+                  <p>
+                     Live feedback system with SAME DAY reporting to Parents on student’s performance and tracking improvises the chance of our kid’s success.
+                  </p>
+               </div>
+               <!-- <br>
+                  <a href="about-us.html" class="btn btn-dark border btn-md">Read More</a> -->
+            </div>
+            <!-- item -->
+            <h3>Why EdLite Inspirations ?</h3>
+            <ol type="a">
+               <li>Well experienced and friendly teachers.</li>
+               <li>Programs tailored to every student's learning speed and need.</li>
+               <li>Notes and Practice Worksheet handouts for each session.</li>
+               <li>Individual report for every session to track student's understanding.</li>
+               <li>Monthly test to evaluate student's progress.</li>
+            </ol>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Why Chose Us -->
+<!-- Start Testimonials 
+   ============================================= -->
+<div class="testimonials-area carousel-shadow default-padding bg-dark text-light">
+   <div class="container">
+      <div class="row">
+         <div class="site-heading text-center">
+            <div class="col-md-8 col-md-offset-2">
+               <h2>Here From Our Students and Parents</h2>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="clients-review-carousel owl-carousel owl-theme">
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="col-md-5 thumb">
+                     <img src="../themes/basic/images/review_icon.jpg" alt="Thumb">
+                  </div>
+                  <div class="col-md-7 info">
+                     <p>
+                        Procuring continued suspicion its ten. Pursuit brother are had fifteen distant has. Early had add equal china quiet visit. Appear an manner as no limits either praise.. 
+                     </p>
+                     <h4>Druna Patia</h4>
+                     <span>Biology Student</span>
+                  </div>
+               </div>
+               <!-- Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="col-md-5 thumb">
+                     <img src="../themes/basic/images/review_icon.jpg" alt="Thumb">
+                  </div>
+                  <div class="col-md-7 info">
+                     <p>
+                        Procuring continued suspicion its ten. Pursuit brother are had fifteen distant has. Early had add equal china quiet visit. Appear an manner as no limits either praise.. 
+                     </p>
+                     <h4>Astron Brun</h4>
+                     <span>Science Student</span>
+                  </div>
+               </div>
+               <!-- Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="col-md-5 thumb">
+                     <img src="../themes/basic/images/review_icon.jpg" alt="Thumb">
+                  </div>
+                  <div class="col-md-7 info">
+                     <p>
+                        Procuring continued suspicion its ten. Pursuit brother are had fifteen distant has. Early had add equal china quiet visit. Appear an manner as no limits either praise.. 
+                     </p>
+                     <h4>Paol Druva</h4>
+                     <span>Development Student</span>
+                  </div>
+               </div>
+               <!-- Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="col-md-5 thumb">
+                     <img src="../themes/basic/images/review_icon.jpg" alt="Thumb">
+                  </div>
+                  <div class="col-md-7 info">
+                     <p>
+                        Procuring continued suspicion its ten. Pursuit brother are had fifteen distant has. Early had add equal china quiet visit. Appear an manner as no limits either praise.. 
+                     </p>
+                     <h4>Druna Patia</h4>
+                     <span>Biology Student</span>
+                  </div>
+               </div>
+               <!-- Single Item -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Testimonials -->
+<!-- Start Popular Courses 
+   ============================================= -->
+<div class="popular-courses bg-gray circle carousel-shadow default-padding">
+   <div class="container">
+      <div class="row">
+         <div class="site-heading text-center">
+            <div class="col-md-8 col-md-offset-2">
+               <h2>Let's Begin Our Journey</h2>
+               <!-- <p>
+                  Discourse assurance estimable applauded to so. Him everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression. 
+                  </p> -->
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="popular-courses-items popular-courses-carousel owl-carousel owl-theme">
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/pre_school.png" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: Free</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Pre-School ( Nursery to KG )</a></h4>
+                     <br>
+                     <p>
+                        Tartlets Programmes, our early years program nurture kids to develop key skills
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/lower_primary.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Lower Primary <br>( Primary 1 to Primary 3 )</a></h4>
+                     <p>
+                        Strengthening academic foundation and independence in learning
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/upper_primary.png" alt="Thumb">
+                     </a>
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Upper Primary <br>( Primary 4 To Primary 6 )</a></h4>
+                     <p>
+                        Developing key critical thinking skills for academic excellence
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/secondary.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Secondary/IGCSE <span style="font-size:14px;">(  Sec 1 to Sec 4  )</span></a><br>IGCSE Y1 to IGCSE Y4</h4>
+                     <p>
+                        Achieving subject mastery and honing critical thinking skills
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/jr_college.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Junior College/IB <br><span style="font-size:14px;">(  JC Y1 to JC Y2  )</span><span style="font-size:14px;">(  IB Y1 to IB Y2  )</span></a></h4>
+                     <p>
+                        Strengthening academic foundation and independence in learning
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/PSAT.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">PSAT <br><span style="font-size:14px;">PSAT9 to PSAT10</span></a></h4>
+                     <p>
+                        Give a try during early years to familiarize with competitive exams.
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/ACT_SAT.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">ACT/SATs</a><br><br></h4>
+                     <p>
+                        Competitive exam training to pursue education in top ranking universities.
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/POLY_DIPLOMA.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Poly/Diploma  <br><br></a></h4>
+                     <p>
+                        Critical subject specialization to pursue career
+                        growth in technology. 
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/ENGINEERING.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">Engineering <br><br></a></h4>
+                     <p>
+                        Building framework of our society
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/coding.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#"> Coding & Robotics <br><br></a></h4>
+                     <p>
+                        Start programming your future with EdLite coders
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/animation.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">  Design & Animation <br><br></a></h4>
+                     <p>
+                        Achieving subject mastery and honing critical thinking skills.
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+               <!-- Single Item -->
+               <div class="item">
+                  <div class="thumb">
+                     <a href="#">
+                     <img src="../themes/basic/images/workshop.jpg" alt="Thumb">
+                     </a>
+                     <!-- <div class="price">Price: $12</div> -->
+                  </div>
+                  <div class="info">
+                     <h4><a href="#">  Engineering Workshop <br><br></a></h4>
+                     <p>
+                        Session handled by Research/Industry Professionals with teaching experience
+                     </p>
+                     <div class="bottom-info text-center">
+                        <a href="#">Session Selection</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Item -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Popular Courses -->
+<!-- Start What Learn
+   ============================================= -->
+<div class="what-learn-area bg-dark default-padding">
+   <div class="container">
+      <div class="content-box">
+         <div class="row">
+            <div class="col-md-8 info text-light">
+               <h1>Aspire becoming a Tutor ?</h1>
+               <h3>
+                  Teaching is a career that never ends.
+                  You will continually learn and grow each day.
+               </h3>
+            </div>
+            <div class="col-md-4 categories">
+               <div class="row">
+                  <!-- Single Item -->
+                  <div class="col-md-4 col-sm-4 single-item" style="margin-top:50px;">
+                     <a  href="/register/teacher" class=" btn btn-light effect btn-md">Join Us</a>
+                  </div>
+                  <!-- End Single Item -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End What Learn -->
+<!-- Start Registration 
+   ============================================= -->
+<div id="register" class="reg-area default-padding-top bg-gray">
+   <div class="container">
+      <div class="row">
+         <div class="reg-items">
+            <div class="col-md-6 reg-form default-padding-bottom">
+               <div class="site-heading text-left">
+                  <h2>contact us for more information</h2>
+                  <!-- <p>
+                     written on charmed justice is amiable farther besides. Law insensible middletons unsatiable for apartments boy delightful unreserved. 
+                     </p> -->
+               </div>
+               <form action="#">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <input class="form-control" placeholder="First Name" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <input class="form-control" placeholder="Last Name" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <input class="form-control" placeholder="Email*" type="email">
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <input class="form-control" placeholder="Contact" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <textarea rows="4" cols="70" class="form-control" placeholder="Tell us how we could help you ( Assignments, Grade, Modules, Projects, etc. )"></textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <button type="submit">
+                        Send
+                        </button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="col-md-6 thumb">
+               <img src="../themes/basic/images/contact.png" alt="Thumb">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Registration -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+   $(document).ready(function() {
+   
+   
+       /* ==================================================
+          # Clients Review Carousel
+       ===============================================*/
+      $('.clients-review-carousel').owlCarousel({
+          loop: false,
+          margin: 30,
+          nav: true,
+          navText: [
+              "<i class='fa fa-angle-left'></i>",
+              "<i class='fa fa-angle-right'></i>"
+          ],
+          dots: false,
+          autoplay: true,
+          responsive: {
+              0: {
+                  items: 1
+                  
+              },
+              600: {
+                  items: 2,
+                  loop: true
+              },
+              1000: {
+                  items: 2,
+                  loop: true
+              }
+          }
+      });
+   
+   
+       /* ==================================================
+          # Courses Carousel
+       ===============================================*/
+      $('.popular-courses-carousel').owlCarousel({
+          loop: true,
+          margin: 30,
+          nav: true,
+          navText: [
+              "<i class='fa fa-angle-left'></i>",
+              "<i class='fa fa-angle-right'></i>"
+          ],
+          dots: false,
+          autoplay: true,
+          responsive: {
+              0: {
+                  items: 1
+              },
+              600: {
+                  items: 2
+              },
+              1000: {
+                  items: 3
+              }
+          }
+      });
+   
+       /* ==================================================
+          # Courses Carousel
+       ===============================================*/
+      $('.main-courses-carousel').owlCarousel({
+         /*animateOut: 'slideOutDown',*/
+         /*autoplayTimeout:5000,*/
+         animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        slideSpeed: 3000,
+        paginationSpeed: 3000,
+            loop: true,
+          margin:0,
+          nav: true,
+          navText: [
+              "<i class='fa fa-angle-left'></i>",
+              "<i class='fa fa-angle-right'></i>"
+          ],
+          dots: false,
+          autoplay: true,
+          responsive: {
+              0: {
+                  items: 1
+              },
+              600: {
+                  items: 1
+              },
+              1000: {
+                  items: 1
+              }
+          }
+      });
+   
+   
+       $('select').niceSelect();
+   
+   
+   });
+</script>

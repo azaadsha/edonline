@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains appointment_time_slots.module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_help().
+ */
+function appointment_time_slots_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.appointment_time_slots':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The appointment time slots module allows you to select and set time slots on a
+      particular date.') . '</p>';
+      $output .= '<p>' . t('This module provide you a field type (Time Slot). You can set
+      different time slots by choosing slot time difference in the field edit page.') . '</p>';
+
+      return $output;
+  }
+}

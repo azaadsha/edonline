@@ -1,0 +1,120 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+
+
+
+<div class="student_prof_wrap"><div class="col" style="text-align: right;margin-bottom:10px;">
+            <button class="button-sm button-theme float-right" >
+                                   
+    <a href="/user/{{user.id}}/edit">Edit Profile</a></button></div></div>
+    
+<div class="">
+   <div class="profile_page card-box">
+     <div class="row"> 
+      <div class="col-md-9 col-lg-9 col-xs-12">
+         <div class="text-left ">
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>User Name :</strong></div> 
+               <span class="col-lg-8 col-xs-7">{{user.name.value}}</span>
+            </div>
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Email :</strong></div>
+               <span class="col-lg-8 col-xs-7">{{user.mail.value}}</span>
+            </div>
+             {% if content.field_first_name %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>First Name :</strong></div> 
+               <span class="col-lg-8 col-xs-7">{{content.field_first_name.0}}</span>
+            </div>
+            {% endif %}
+             {% if content.field_last_name %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Last Name :</strong></div>
+               <span class="col-lg-8 col-xs-7">{{content.field_last_name.0}}</span>
+            </div>
+            {% endif %}
+             {% if content.field_phone %}
+            <div class="text-muted font-13">
+              <div class="col-lg-4 col-xs-5"> <strong>Mobile :</strong></div>
+               <span class="col-lg-7">{{content.field_phone.0 | raw }}</span>
+            </div>
+            {% endif %}
+            {% if content.field_date_of_birth %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Date Of Birth :</strong> </div>
+               <span class="col-lg-8 col-xs-7">{{content.field_date_of_birth.0}}</span>
+            </div>
+            {% endif %}
+            {% if content.field_date_of_joining %}
+             <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Date Of Joining :</strong> </div>
+               <span class="col-lg-8 col-xs-7">{{content.field_date_of_joining.0}}</span>
+            </div>
+            {% endif %}
+            {% if content.field_level %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Course Level :</strong> </div>
+               <span class="col-lg-8 col-xs-7">{{content.field_level.0 | raw }}</span>
+            </div>
+            {% endif %}
+            {% if content.school %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>School :</strong></div>
+               <span class="col-lg-8 col-xs-7">{{content.field_school.0}}</span>
+            </div>
+            {% endif %}
+            {% if content.polytechnic %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Polytechnic :</strong></div>
+               <span class="col-lg-8 col-xs-7">{{content.field_polytechnic.0}}</span>
+            </div>
+            {% endif %}
+            {% if content.university %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-4"><strong>University :</strong></div>
+               <span class="col-lg-8 col-xs-8">{{content.field_university.0}}</span>
+            </div>
+            {% endif %}
+            {% if content.field_grade_year %}
+            <div class="text-muted font-13">
+               <div class="col-lg-4 col-xs-5"><strong>Grade / Year :</strong> </div>
+               <span class="col-lg-8 col-xs-7">{{content.field_grade_year.0 }}</span>
+            </div>
+            {% endif %}
+         </div>
+      </div>
+      <!-- end col -->
+      <div class="col-md-3 col-lg-3">
+         <div class="text-center ">
+            <div class="member-card">
+               <div class="thumb-xl member-thumb m-b-10 center-block">
+                 {{  content.field_profile_picture.0 }}
+               </div>
+               <div class="">
+                  <h4 class="m-b-5">{{content.field_first_name.0}} {{content.field_last_name.0}} </h4>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end col -->
+
+   </div>
+   </div>
+   <!-- end row -->
+</div>

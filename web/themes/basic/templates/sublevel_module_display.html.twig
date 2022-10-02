@@ -1,0 +1,82 @@
+<!-- Start Breadcrumb 
+         ============================================= -->
+      <div class="breadcrumb-area shadow dark text-center bg-fixed text-light" style="background-image: url({{items['banner_image_path']}});">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1>{{items['level_title']}}</h1>
+                  <h4>{{items['level_desc']}}</h4>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Breadcrumb -->
+      <!-- Start Advisor Details 
+         ============================================= -->
+      <div class="adviros-details-area default-padding page-height">
+         <div class="container">
+            <div class="row">
+               <div class="site-heading text-center">
+                  <div class="col-md-8 col-md-offset-2">
+                     <h2>Let's Begin Our Journey</h2>
+                     <!-- <p>
+                        Discourse assurance estimable applauded to so. Him everything melancholy uncommonly but solicitude inhabiting projection off. Connection stimulated estimating excellence an to impression. 
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 thumb">
+                    <img src="{{ items['left_bar_image_path'] }}" alt="Thumb">
+                    <div class="desc">
+                         <h4>{{items['level_title']}}</h4>
+                        
+                    </div>
+                </div>
+                <div class="col-md-7 info">
+                    <!-- Star Tab Info -->
+                   
+                    {% if items['subjects'] %}
+                    <form name="subjects_form" method="post" action="/slot-booking" class="row">
+                           
+                            <input type="hidden" name="level-selected" value="{{items['level_id']}}" />
+                 
+                  <div class="col-lg-12">
+                  
+    
+                     <select name="selected-subject" id="selected-subject" class="nice-select">
+                     <option value='0'>Choose Your Module</option>
+                     {% for key, subject in items['subjects'] %}
+                                            
+                                            <option value='{{key}}'>{{subject}}</option>
+                                            
+                         {% endfor %}                   
+                                        </select>
+
+                  </div>
+
+                  <div class="col-lg-12">
+                    <textarea rows="5" class="poly_para2 diploma_comment" id="course_comment" name="course_comment" placeholder="Type of Assistance required: Eg.Assignment/Projects"></textarea>
+                  </div>
+                  <div class="col-lg-12">
+                     <button class="button-sm button-theme" type="submit" id="module-pass">
+                                            Session Selection
+                                    </button>
+                  </div>
+
+                  <div class="col-lg-12"><div class="subject-validation messages messages--error" style="display:none;"></div></div>
+                  <!-- <br>
+                     <button type="submit">
+                         Search Courses
+                     </button> -->
+               </form>
+
+               {% else %}
+                  <div class="messages messages--error">No subjects added under this level. Please check later.</div>
+               {% endif %} 
+                    <!-- End Tab Info -->
+                </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Advisor Details -->

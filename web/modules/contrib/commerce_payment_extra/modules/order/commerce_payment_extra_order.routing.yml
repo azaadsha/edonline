@@ -1,0 +1,7 @@
+commerce_payment_extra_order.settings:
+  path: '/admin/commerce/config/payment/extra-order'
+  defaults:
+    _title: 'Payment Extra'
+    _form: 'Drupal\commerce_payment_extra_order\Form\SettingsForm'
+  requirements:
+    _permission: 'administer commerce_payment_gateway'

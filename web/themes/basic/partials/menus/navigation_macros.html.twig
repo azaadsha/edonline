@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Macros for rendering menu
+ *
+ * Available variables:
+ *
+ * Render Subitem:
+ * - category: 
+ *   - type: array
+ *   - Array of terms to create menu list items from
+ * - heading:
+ *   - type: string
+ *   - Parent term of the current list
+ * - limit:
+ *   - type: number
+ *   - Upper bound used to truncate the category list
+ * - more:
+ *   - type: boolean
+ *   - Adds the length of the truncated list if heading is also not null
+ * - insert:
+ *   - type: DOM Node
+ *   - Appends HTML Markup to the top of the <ul>
+ * - see_all:
+ *   - type: boolean
+ *   - Adds a more link to the top of the <ul>
+ *
+ * Create Navigation List:
+ * - navigation
+ *   - type: array
+ *
+ * @see navigation.html.twig
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% macro render_subitem(category , heading , limit , more , insert , see_all) %}
+  {% if heading %}
+    <a href="/{{ heading|lower|replace({' & ':'-',' ': '-'}) }}">{{ heading }}</a>
+  {% endif %}
+  <ul class="is-hidden">
+    {% if insert %}
+      {{ insert }}
+    {% endif %}
+    {% if see_all %}
+      <li class="see-all"><a class="mm-item" href="/{{ heading|lower|replace({' & ':'-',' ': '-'}) }}">See All {{ heading }}</a></li>
+    {% endif %}
+    {% for subitem in limit ? category|slice(0 , limit) : category %}
+      <li><a class="mm-item" href="{{ subitem.link }}">{{ subitem.term }}</a></li>
+    {% endfor %}
+    {% if more and heading %}
+      {% set more_length = category|length - category|slice(0 , limit)|length %}
+      {% if more_length != 0 %}
+        <li class="see-all"><a class="mm-item" href="/{{ heading|lower|replace({' & ':'-',' ': '-'}) }}">+{{ more_length }} More</a></li>
+      {% endif %}
+    {% endif %}
+  </ul>
+{% endmacro %}
+
+{% macro create_navigation_list(navigation) %}
+  <div>
+    {% for category in navigation %}
+      {{ navigation.render_subitem(category) }}
+    {% endfor %}
+  </div>
+{% endmacro %}

@@ -1,0 +1,150 @@
+{% import directory ~ '/partials/menus/navigation_macros.html.twig' as navigation %}
+<nav id="mobile_menu" class="dropdown-flyout menu-dropdown-container">
+  <a href="javascript:void(0)" class="close-dropdown-flyout">Close Menu</a>
+  <ul class="dropdown-flyout-content">
+    <li class="search">
+      {% include directory ~ '/partials/header_search_bar.html.twig' %}
+    </li>
+    <li><a class="mm-item" href="/">Home</a></li>
+    <li class="has-children">
+      <a href="javascript:void(0)">Topics</a>
+      <ul class="dropdown-flyout-secondary-dropdown is-hidden">
+        {% set insert %}
+            <li class="go-back"><a href="javascript:void(0)">Topics</a></li>
+        {% endset %}
+        <li class="go-back"><a href="javascript:void(0)">Main Menu</a></li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Markets'] , 'Markets' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Business'] , 'Business' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Technology'] , 'Technology' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Exploration & Production'] , 'Exploration & Production' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Transactions'] , 'Transactions' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Policy & Regulation'] , 'Policy & Regulation' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Midstream'] , 'Midstream' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Shale Plays'] , 'Shale Plays' , null , true , insert , true) }}</li>
+        <li class="has-children">{{ navigation.render_subitem(menu['Energy Transition'] , 'Energy Transition' , null , true , insert , true) }}</li>
+      </ul>
+    </li>
+    <li class="has-children">
+      <a href="javascript:void(0)">Databases</a>
+      <ul class="dropdown-flyout-icons is-hidden">
+        <li class="go-back"><a href="javascript:void(0)">Main Menu</a></li>
+        <li>
+          <a class="dropdown-flyout-item item-1 mm-item" href="/activity-highlights">
+              <h3>Drilling Activity</h3>
+              <p>Database of selected U.S. and international exploration wells</p>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-2 mm-item" href="/ad-transactions">
+            <h3>Transactions</h3>
+            <p>Information on assets, buyers and sellers, deal values, and more.</p>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-3 mm-item" href="/new-financings">
+            <h3>New Financings</h3>
+            <p>A searchable database of oil and gas debt and equity offerings.</p>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-4 mm-item" href="/whos-who">
+            <h3>Who's Who</h3>
+            <p>A list of A&amp;D professionals anywhere.</p>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-5 mm-item" href="/markets/data">
+            <h3>Markets Data</h3>
+            <p>Prices for top E&amp;P stocks and commodities.</p>
+          </a>
+        </li>
+         <li>
+          <a class="dropdown-flyout-item item-7 mm-item" href="/datalink">
+           <h3>Energy Datalink</h3>
+            <p>Rextag database of energy infrastructure assets</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+     <li class="has-children">
+      <a href="javascript:void(0)">Lists</a>
+      <ul class="dropdown-flyout-gallery is-hidden">
+        <li class="go-back"><a href="javascript:void(0)">Main Menu</a></li>
+        <li>
+          <a class="dropdown-flyout-item item-1 mm-item other" href="/40underforty">E&amp;P 40 Under Forty</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-2 mm-item other" href="/fortyunder40">Oil and Gas Investor Forty Under 40</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-3 mm-item other" href="/energy-esg-awards">Energy ESG Awards</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-4 mm-item other" href="/mea">Meritorious Awards for Engineering Innovation (MEAs)</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-5 mm-item other" href="/shale-technology-showcase">Shale Technology Showcase</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-6 mm-item other" href="/veterans-in-energy">Veterans in Energy</a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item item-7 mm-item other" href="/women-in-energy">Women In Energy</a>
+        </li>
+      </ul>
+    <li class="has-children">
+      <a href="javascript:void(0)">Publications</a>
+      <ul class="dropdown-flyout-gallery is-hidden">
+        <li class="go-back"><a href="javascript:void(0)">Main Menu</a></li>
+        <li class="see-all"><a href="/publications" class="mm-item">Browse Publications</a></li>
+        <li>
+          <a class="dropdown-flyout-item mm-item" href="/publications/oil-gas-investor-magazine">
+            <img src="/{{ directory }}/images/ogi-menu-graphic.jpg" alt="Oil and Gas Investor">
+            <h3>Oil and Gas Investor</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item mm-item" href="/ep">
+            <img src="/{{ directory }}/images/epm-menu-graphic.jpg" alt="E+P">
+            <h3>E+P</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item mm-item" href="/publications/midstream-business-magazine">
+            <img src="/{{ directory }}/images/msb-menu-graphic.jpg" alt="Midstream Business Magazine">
+            <h3>Midstream Business Magazine</h3>
+          </a>
+        </li>
+        <li class="divider">Other Publications</li>
+        <li>
+          <a class="dropdown-flyout-item other mm-item" href="/publications/special-reports">
+            <h3>Special Reports</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item other mm-item" href="/publications/playbooks">
+            <h3>Playbooks, Techbooks and Yearbooks</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item other mm-item" href="/publications/acquisitions-divestitures-watch-weekly">
+            <h3>A&amp;D Watch Weekly</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item other mm-item" href="/publications/midstream-transport-monitor">
+            <h3>Midstream &amp; Transport Monitor</h3>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-flyout-item other mm-item" href="/subsea-engineering-news">
+            <h3>Subsea Engineering News</h3>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="/videos" class="mm-item">Video</a></li>
+    <li><a href="/events" class="mm-item">Events</a></li>
+    <li><a href="/newsletters" class="mm-item">Newsletters</a></li>
+  </ul>
+</nav>

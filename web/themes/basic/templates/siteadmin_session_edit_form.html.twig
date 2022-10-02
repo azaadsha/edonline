@@ -1,0 +1,26 @@
+
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+
+<div class="profile_edit_wrap">
+{% if form.title['#access'] %}<div class="col-lg-4">{{form.title}}</div>{% endif %}
+{% if form.field_session_date['#access'] %}<div class="col-lg-4">{{form.field_session_date}}</div>{% endif %}
+{% if form.field_session_time['#access'] %}<div class="col-lg-4">{{form.field_session_time}}</div>{% endif %}
+{% if form.field_session_level['#access'] %}<div class="col-lg-4">{{form.field_session_level}}</div>{% endif %}
+{% if form.field_session_sub_level['#access'] %}<div class="col-lg-4">{{form.field_session_sub_level}}</div> {% endif %}
+{% if form.field_session_end_time['#access'] %}<div class="col-lg-4">{{form.field_session_end_time}}</div>{% endif %}
+
+{% if form.field_session_subject['#access'] %}<div class="col-lg-4">{{form.field_session_subject}}</div>{% endif %}
+{% if form.field_session_teacher['#access'] %}<div class="col-lg-4">{{form.field_session_teacher}}</div>{% endif %}
+
+{% if form.field_student_s_feedback['#access'] %}<div class="col-lg-12">{{form.field_student_s_feedback}}</div>{% endif %}
+{% if form.field_teacher_s_feedback['#access'] %}<div class="col-lg-12">{{form.field_teacher_s_feedback}}</div>{% endif %}
+{% if form.field_assistance_requested['#access'] %}<div class="col-lg-12">{{form.field_assistance_requested}}</div>{% endif %}
+
+
+<div class="col-lg-12 ed_prof_submit">
+{{ form.actions.submit }}
+</div>
+</div>

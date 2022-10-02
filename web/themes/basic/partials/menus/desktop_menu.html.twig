@@ -1,0 +1,39 @@
+{% import directory ~ '/partials/menus/navigation_macros.html.twig' as navigation %}
+<nav id="desktop_menu" class="dropdown-flyout menu-dropdown-container">
+  <ul class="dropdown-flyout-content">
+   
+
+     <li class="has-children">
+      <a href="#">Media</a>
+      <ul class="dropdown-flyout-secondary-dropdown is-hidden">
+        <li>
+            
+            {% include directory ~ '/partials/menus/media_menu_items.html.twig' %}
+        </li>
+       
+      </ul>
+    </li>
+
+    <li class="has-children">
+      <a href="#">Conferences</a>
+      <ul class="dropdown-flyout-secondary-dropdown is-hidden">
+        <li>
+          {% include directory ~ '/partials/menus/conferences_menu_items.html.twig' %}
+        </li>
+      </ul>
+    </li>
+    <li class="has-children">
+      <a href="javascript:void(0)">Data & Insights</a>
+      <ul class="dropdown-flyout-icons is-hidden">
+
+        <li>
+          
+          {% include directory ~ '/partials/menus/data_insights_menu_items.html.twig' %}
+        </li>
+      </ul>
+    </li>
+   
+    
+    <li><a class="mm-item" href="/newsletters">About Us</a></li>
+  </ul>
+</nav>

@@ -1,0 +1,6 @@
+services:
+  commerce_payment_extra_order.commands:
+    class: \Drupal\commerce_payment_extra_order\Commands\AuthorizedOrdersCommands
+    arguments: ['@commerce_payment_extra_order.order_authorized_manager']
+    tags:
+      - { name: drush.command }

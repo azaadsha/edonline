@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_cron().
+ */
+function commerce_payment_extra_order_cron() {
+  if (!\Drupal::config('commerce_payment_extra_order.settings')->get('enable_cron')) {
+    return;
+  }
+
+  \Drupal::service('commerce_payment_extra_order.order_authorized_manager')->processOrders();
+}

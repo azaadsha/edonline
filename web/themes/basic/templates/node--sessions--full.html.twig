@@ -1,0 +1,94 @@
+{#{{ dump(content['field_student_s_feedback']) }}#}
+{# user_role added in basic_preprocess_node and display configured for full view display mode #}
+
+<div class="row teacher_sessions">
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Level:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_session_level'] }}</div>
+     </div>
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Sub Level:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6"> {{ content['field_session_sub_level'] }}</div>
+        {% if content['field_session_sub_level']|length < 3 %}
+        <div class="col-lg-6 col-xs-6"> Not Applicable </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row teacher_sessions">
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Subject:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_session_subject'] }}</div>
+     </div>
+
+     <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Date:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_session_date'] }}</div>
+     </div>
+   
+</div>
+
+<div class="row teacher_sessions">
+    
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Start Time:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_session_time'] }}</div>
+    </div>
+     <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Session End Time:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_session_end_time'] }}</div>
+    </div>
+</div>
+{% if user_role !='teacher' %}
+<div class="row teacher_sessions">
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Session Fee:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_price_committed'] }}</div>
+     </div>
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Fee Paid:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_fee_paid'] }}</div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row teacher_sessions">
+
+ {#{% if user_role =='student' %}#}
+ 
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Student's Feedback:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_student_s_feedback'] }}</div>
+        
+        
+        {% if (content['field_student_s_feedback']|length < 3) and  (content['field_session_end_time']|length > 2)  %}
+         <div class="col-lg-6 col-xs-6">
+         No feedback yet.{% if user_role =='student' %}<br />Please <a href ="/session-feedback/{{ node_id }}">click here</a> to provide your valuble feedback.{% endif %}
+        </div>
+        {% endif %}
+
+     </div>
+     <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Assistance Requested:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_assistance_requested'] }}</div>
+    </div>
+  {#{% endif %} 
+  {% if user_role =='teacher' %}#}
+     <div class="col-md-6 col-xs-12">
+        <div class="col-lg-6 col-xs-6"><label><strong>Teacher's Feedback:</strong></label></div> 
+        <div class="col-lg-6 col-xs-6">{{ content['field_teacher_s_feedback'] }}</div>
+        {% if (content['field_teacher_s_feedback']|length < 3) and  (content['field_session_end_time']|length > 2) %}
+         <div class="col-lg-6 col-xs-6">
+         No feedback yet.{% if user_role =='teacher' %}<br />Please <a href ="/session-feedback/{{ node_id }}">click here</a> to provide your valuble feedback.{% endif %}
+        </div>
+        {% endif %}
+
+     </div>
+   {#{% endif %} #}
+    
+</div>
+
+
+
+
+

@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains update functions for Phone International module.
+ */
+
+use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
+
+/**
+ * Implements hook_requirements().
+ */
+function phone_international_requirements($phase) {
+  $requirements = [];
+
+  $path = 'libraries/intl-tel-input/index.js';
+  if (\Drupal::moduleHandler()->moduleExists('libraries')) {
+    $path = libraries_get_path('intl-tel-input') . '/plugin.js';
+  }
+  $path = DRUPAL_ROOT . '/' . $path;
+
+  if (!file_exists($path)) {
+    $requirements['phone_international'] = [
+      'title' => t('Phone International library is missing'),
+      'value' => t('Plugin not detected'),
+      'severity' => REQUIREMENT_ERROR,
+      'description' => t('Phone International requires the intl-tel-input library.
+       Download the plugin from <a href=":link" target="_blank">GitHub</a> at least
+       version 17.0.0, and place it in the libraries folder
+       (/libraries/intl-tel-input) or check README Install', [':link' => 'https://github.com/jackocnr/intl-tel-input']),
+    ];
+  }
+  else {
+    $requirements['phone_international'] = [
+      'title' => t('Phone International library'),
+      'value' => t('Plugin intl-tel-input detected'),
+      'severity' => REQUIREMENT_OK,
+    ];
+  }
+
+  return $requirements;
+}
+
+/**
+ * Set cdn config.
+ */
+function phone_international_update_8801() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('phone_international.settings');
+  $config->set('cdn', 0);
+  $config->save(TRUE);
+}

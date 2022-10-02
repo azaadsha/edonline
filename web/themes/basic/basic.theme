@@ -1,0 +1,167 @@
+<?php
+function basic_css_alter(&$css, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+
+// Remove defaults.css file.
+/*unset($css[drupal_get_path('module', 'system') . '/css/components/ajax-progress.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/align.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/autocomplete-loading.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/fieldgroup.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/container-inline.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/clearfix.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/details.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/hidden.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/item-list.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/js.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/position-container.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/progress.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/tree-child.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/tablesort.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/tabledrag.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/system-status-report-general-info.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/system-status-report-counters.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/system-status-counter.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/sticky-header.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/resize.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/nowrap.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/reset-appearance.module.css']);
+unset($css[drupal_get_path('module', 'system') . '/css/components/ajax-progress.module.css']);*/
+
+
+
+}
+
+function basic_preprocess_html(&$variables) {
+
+  
+  $current_path = substr(\Drupal::service('path.current')->getPath(), 1);
+  $path_args = explode('/', $current_path);
+
+ 
+  
+
+
+  
+ 
+  if(sizeof($path_args) > 2 && isset($variables['node_type'])){
+    $additional_class= $path_args[0].'-'.$variables['node_type'].'-'.$path_args[2];
+    $variables['attributes']['class'][] = $additional_class;
+    
+  }
+  elseif(sizeof($path_args) > 2 && !array_key_exists("node_type",$variables)){
+    
+    $variables['attributes']['class'][] = $path_args[0].'-'.$path_args[2];
+
+  }
+  if( isset($variables['node_type'])  && $variables['node_type'] == 'page'){
+    $page_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/'.$current_path);
+    $variables['attributes']['class'][] = str_replace('/','',$page_alias);
+  }
+
+  
+  // Add information about the number of sidebars.
+  if ($variables['logged_in']) {
+    $roles = $variables['user']->getRoles();
+    $variables['attributes']['class'][] = isset($roles[1])? $roles[1] : $roles[0];
+  }
+  if (!empty($variables['page']['left_nav'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first';
+  }
+  
+
+}
+
+/*function basic_preprocess_block(&$variables) {
+  dump($variables);
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+}*/
+
+function basic_preprocess_term(&$variables) {
+
+  //dump($variables);
+  //dump($variables['elements']['#node']->id());
+  //die;
+ 
+  $node = \Drupal::request()->attributes->get('node');
+
+  if ($node && $node->bundle() == 'store') {
+    $variables['title'] = t('@title Review', ['@title' => $node->getTitle()]);
+  }
+}
+
+function basic_js_alter(&$javascript, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+
+  // Swap out jQuery to use an updated version of the library.
+ // unset($javascript[drupal_get_path('module', 'jquery_update') . '/jquery.js']);
+}
+
+/*function basic_preprocess_user(&$variables) {
+  
+  
+}*/
+function basic_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  
+  
+
+  
+  //if ($hook === 'form' && !empty($variables['element']['#id'])) {
+    //$suggestions[] = 'edlite__' . str_replace('-', '_', $variables['element']['#id']);
+ // }
+}
+
+function basic_preprocess_node(&$variables) {
+  
+  
+ if($variables['elements']['#node']->get('type')->getString()=='sessions'){
+  $user_role = $variables['user']->getRoles(); 
+  $variables['user_role'] = isset($user_role[1]) ? $user_role[1] : '';
+  $variables['node_id'] = $variables['elements']['#node']->id();
+  
+  //$variables['content']['field_session_date'][0]['#text'] = date('d-m-Y',strtotime($variables['content']['field_session_date'][0]['#text']));
+ }
+}
+
+ function basic_preprocess_page(&$variables) {
+  
+ 
+  if($variables['is_front']){
+    $message = \Drupal::entityTypeManager()
+            ->getStorage('contact_message')
+            ->create(array(
+            'contact_form' => 'edlite_contact_form', //ID(Machine name) of form
+        ));
+        $form = \Drupal::service('entity.form_builder')->getForm($message);
+        $variables['application_form'] = $form;
+ 
+  }
+
+    
+  }
+
+  function basic_preprocess_page_title(&$variables) {
+
+  //Just to change the title of the page from Add Term to Add Subject for non super admin
+  $path = \Drupal::service('path.current')->getPath();
+  $pathArray = explode('/',$path);
+  if($path == '/admin/structure/taxonomy/manage/subjects/add'){
+    if(!$variables['is_admin'])
+    $variables['title'] = t('Add Subject');
+    
+  }
+  if(in_array('edit',$pathArray) && in_array('term',$pathArray) ){
+
+    if(!$variables['is_admin'])
+    $variables['title'] = ($variables['title'] =='Edit term') ?  t('Edit Subject') : $variables['title'];
+  }
+  if($path == '/user/login'){
+    $variables['title'] = 'EdLite Login';
+    }
+
+  
+
+}
+
+

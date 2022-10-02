@@ -1,0 +1,10 @@
+name: Appointment Time Slots
+type: module
+description: Appointment time slots module provides a field type, that allows you to select and set time slots for a particular date.
+core: 8.x
+core_version_requirement: ^8 || ^9
+
+# Information added by Drupal.org packaging script on 2021-09-01
+version: '8.x-1.0'
+project: 'appointment_time_slots'
+datestamp: 1630492207

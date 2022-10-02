@@ -1,0 +1,12 @@
+name: Commerce Payment Extra
+type: module
+description: Provides expanded payment API.
+package: Commerce
+core_version_requirement: ^8.7.7 || ^9
+dependencies:
+  - commerce:commerce_payment
+
+# Information added by Drupal.org packaging script on 2021-06-16
+version: '8.x-1.0-rc2'
+project: 'commerce_payment_extra'
+datestamp: 1623843550

@@ -1,0 +1,6 @@
+edlite.settings_form:
+  title: edlite
+  description: Configure edlite.
+  parent: system.admin_config_system
+  route_name: edlite.settings_form
+  weight: 10

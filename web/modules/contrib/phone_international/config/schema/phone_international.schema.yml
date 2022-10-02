@@ -1,0 +1,33 @@
+field.widget.settings.phone_international_widget:
+  type: mapping
+  label: 'Telephone default format settings'
+  mapping:
+    geolocation:
+      type: boolean
+      label: 'Geolocation'
+    initial_country:
+      type: string
+      label: 'Initial Country'
+    exclude_countries:
+      type: sequence
+      label: 'Exclude Countries'
+    preferred_countries:
+      type: sequence
+      label: 'Preferred Countries'
+
+field.value.phone_international:
+  type: mapping
+  label: 'Telephone default format settings'
+  mapping:
+    geolocation:
+      type: boolean
+      label: 'Geolocation'
+    initial_country:
+      type: string
+      label: 'Initial Country'
+    exclude_countries:
+      type: sequence
+      label: 'Exclude Countries'
+    preferred_countries:
+      type: sequence
+      label: 'Preferred Countries'

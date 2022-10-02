@@ -1,0 +1,26 @@
+	
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+
+<div class="profile_edit_wrap">
+<div class="col-lg-4">{{form.field_first_name}}</div>
+<div class="col-lg-4">{{form.field_last_name}}</div>
+<div class="col-lg-4">{{form.account.mail}}</div>
+{% if form.account.current_pass %}<div class="col-lg-4">{{form.account.current_pass}}</div>{% endif %}
+<div class="col-lg-4">{{form.account.pass.pass1}}</div>
+<div class="col-lg-4">{{form.account.pass.pass2}}</div>
+<div class="col-lg-4">{{form.field_grade_year}}</div>
+<div class="col-lg-4">{{form.field_level}}</div>
+<div class="col-lg-4">{{form.field_parent_email}}</div>
+<div class="col-lg-4">{{form.field_parent_phone}}</div>
+
+<div class="col-lg-4">{{form.field_phone}}</div>
+<div class="col-lg-4">{{form.field_school}}</div>
+
+<div class="col-lg-4">{{form.field_profile_picture}}</div>
+<div class="col-lg-8 ed_prof_submit">
+{{ form.actions.submit }}
+</div>
+</div>

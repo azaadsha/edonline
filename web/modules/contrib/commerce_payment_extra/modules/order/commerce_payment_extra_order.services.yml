@@ -1,0 +1,18 @@
+services:
+  commerce_payment_extra_order.cancel_event_subscriber:
+    class: Drupal\commerce_payment_extra_order\EventSubscriber\CancelOrderEventSubscriber
+    arguments: ['@config.factory', '@entity_type.manager', '@commerce_payment_extra.manager']
+    tags:
+      - { name: event_subscriber }
+  commerce_payment_extra_order.complete_event_subscriber:
+    class: Drupal\commerce_payment_extra_order\EventSubscriber\CompleteOrderEventSubscriber
+    arguments: ['@config.factory', '@entity_type.manager', '@logger.channel.commerce_payment_extra_order', '@commerce_payment_extra.manager']
+    tags:
+      - { name: event_subscriber }
+  logger.channel.commerce_payment_extra_order:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['commerce_payment_extra_order']
+  commerce_payment_extra_order.order_authorized_manager:
+    class: Drupal\commerce_payment_extra_order\OrderAuthorizedManager
+    arguments: ['@config.factory', '@entity_type.manager', '@datetime.time', '@commerce_payment_extra.manager', '@logger.channel.commerce_payment_extra_order', '@database', '@lock']

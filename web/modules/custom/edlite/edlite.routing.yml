@@ -1,0 +1,121 @@
+edlite.example:
+  path: '/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\edlite\Controller\EdliteController::build'
+  requirements:
+    _permission: 'access content'
+
+edlite.level:
+  path: '/level/{levelId}'
+  defaults:
+    _title: 'Course Selection'
+    _controller: '\Drupal\edlite\Controller\EdliteController::level'
+  options:
+    parameters:
+      levelId:
+  requirements:
+    _permission: 'access content' 
+
+edlite.feedback:
+  path: '/session-feedback/{sessionId}'
+  defaults:
+    _form: 'Drupal\edlite\Form\FeedbackForm'
+    _title: 'Session Feedback'
+    
+  options:
+    parameters:
+      levelId:
+  requirements:
+    _permission: 'access content' 
+
+    
+edlite.fee:
+  path: '/fee-structure'
+  defaults:
+    #_title: 'Fee Structure'
+    _controller: '\Drupal\edlite\Controller\EdliteController::fee_structure'
+  requirements:
+    _permission: 'access content'     
+edlite.session_booking:
+  path: '/slot-booking'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::session_booking'
+  requirements:
+    _permission: 'access content'
+edlite.student_dashboard:
+  path: '/student/dashboard'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::student_dashboard'
+  requirements:
+    _permission: 'access content'
+edlite.teacher_dashboard:
+  path: '/teacher/dashboard'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::teacher_dashboard'
+  requirements:
+    _permission: 'access content'
+edlite.siteadmin_dashboard:
+  path: '/site_admin/dashboard'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::siteadmin_dashboard'
+  requirements:
+    _permission: 'access content'   
+edlite.session_slot_validation:
+  path: '/validate-session-slot'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::validate_session_slot'
+  requirements:
+    _permission: 'access content'             
+edlite.session_creation:
+  path: '/create-session'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::create_session'
+  requirements:
+    _permission: 'access content' 
+
+edlite.session_deletion:
+  path: '/delete-session/{nodeId}'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::delete_session'
+  requirements:
+    _permission: 'access content'     
+
+edlite.contact:
+  path: '/contact-us'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::contact_edlite'
+  requirements:
+    _permission: 'access content'
+
+edlite.contact_special_kids:
+  path: '/special-kids-contact-us'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::contact_edlite_special_kids'
+  requirements:
+    _permission: 'access content'
+
+edlite.clear_all_caches:
+  path: '/clear-cache'
+  defaults:
+    _title: ''
+    _controller: '\Drupal\edlite\Controller\EdliteController::clear_cache'
+  requirements:
+    _permission: 'access content'      
+
+edlite.settings_form:
+  path: '/admin/config/system/edlite'
+  defaults:
+    _title: 'edlite settings'
+    _form: 'Drupal\edlite\Form\SettingsForm'
+  requirements:
+    _permission: 'administer edlite configuration'

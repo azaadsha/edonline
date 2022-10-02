@@ -1,0 +1,59 @@
+
+<!-- Start Registration 
+   ============================================= -->
+<div id="contact-form" class="reg-area default-padding-top">
+   <div class="container">
+      <div class="row">
+         <div class="reg-items">
+            <div class="col-md-6 reg-form default-padding-bottom">
+               <div class="site-heading text-left">
+                  <h2>contact us for more information</h2>
+                  <!-- <p>
+                     written on charmed justice is amiable farther besides. Law insensible middletons unsatiable for apartments boy delightful unreserved. 
+                     </p> -->
+               </div>
+               <form method="post" >
+               
+                {{ items.form_build_id }}
+                {{ items.form_token }}
+                {{ items.form_id }}
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           {{items.field_contact_first_name}}
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           {{items.field_contact_last_name}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.field_contact_email}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.field_contact}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           {{items.message}}
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        {{items.actions}}
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="col-md-6 thumb">
+               <img src="../themes/basic/images/contact.png" alt="Thumb">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Registration -->

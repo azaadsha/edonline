@@ -1,0 +1,52 @@
+global:
+  version: VERSION
+  css:
+    theme:
+      
+      css/theme/bootstrap.min.css: {}
+      css/theme/font-awesome.min.css: {}
+      css/theme/flaticon-set.css: {}
+      css/theme/elegant-icons.css: {}
+      css/theme/magnific-popup.css: {}
+      includes/OwlCarousel/dist/assets/owl.carousel.min.css: {}
+      includes/OwlCarousel/dist/assets/owl.theme.default.min.css: {}
+      css/theme/animate.css: {}
+      css/theme/bootsnav.css: {}
+      css/theme/styles.css: {}
+      css/theme/azaad.css: {}
+      css/theme/responsive.css: {}
+      //code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css: { type: external, minified: true }
+      
+      
+      '//fonts.googleapis.com/css?family=Open+Sans|Poppins::400,500,600,700,800': { type: external, minified: true }
+  js:
+    #//code.jquery.com/jquery-3.6.0.min.js: { type: external, minified: true }
+    //code.jquery.com/ui/1.13.0/jquery-ui.min.js: { type: external, minified: true }
+    js/bootstrap.min.js: {}
+    js/equal-height.min.js: {}
+    js/jquery.appear.js: {}
+    js/jquery.easing.min.js: {}
+    js/jquery.magnific-popup.min.js: {}
+    js/modernizr.custom.13711.js: {}
+    includes/OwlCarousel/dist/owl.carousel.min.js: {}
+    js/wow.min.js: {}
+    js/isotope.pkgd.min.js: {}
+    js/imagesloaded.pkgd.min.js: {}
+    js/count-to.js: {}
+    js/loopcounter.js: {}
+    js/jquery.nice-select.min.js: {}
+    js/bootsnav.js: {}
+    js/main.js: {}
+    js/edlite.js: {}
+  dependencies:
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/once
+    - jquery_ui_checkboxradio/checkboxradio
+  
+  
+  
+  
+ 
